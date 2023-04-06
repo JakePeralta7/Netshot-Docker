@@ -1,0 +1,29 @@
+version: '3'
+name: Netshot
+
+services:
+  db:
+    image: postgres:11-alpine
+    container_name: netshot_db
+
+    environment:
+      POSTGRES_DB: netshot01
+      POSTGRES_USER: netshot
+      POSTGRES_PASSWORD: netshot
+    
+    volumes:
+      - ./db-data:/var/lib/postgresql/data
+    
+    ports:
+     - 5432:5432
+
+  netshot:
+    image: eladle/netshot:latest
+    container_name: netshot_app
+    
+    volumes:
+     - ./etc/netshot.conf:/etc/netshot.conf
+     - ./drivers:/usr/local/netshot/drivers
+     
+    ports:
+     - 8080:8080
