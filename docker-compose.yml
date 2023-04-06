@@ -18,7 +18,7 @@ services:
      - 5432:5432
 
   netshot:
-    image: eladle/netshot:latest
+    image: netshot:latest
     container_name: netshot_app
     
     volumes:
